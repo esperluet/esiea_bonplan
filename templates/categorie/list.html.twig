@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<p> Liste des categories </p>
+<table>
+    <thead>
+        <th>Nom</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
+    </thead>
+    <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td><a href="{{ path('categorie-view', {'id': categorie.id}) }}"> {{ categorie.nom }} </a></td>
+                <td><a href="{{ path('categorie-update', {'id': categorie.id}) }}"> modifier </a></td>
+                <td><a href="{{ path('categorie-update', {'id': categorie.id}) }}"> supprimer </a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
