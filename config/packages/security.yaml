@@ -5,14 +5,28 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
+        users_provider:
+            entity:
+                class: App\Entity\Utilisateur
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
-
+            provider: users_provider
+            form_login:
+                login_path: security_login
+                check_path: security_login_check
+                default_target_path: security_login
+                username_parameter: "login[email]"
+                password_parameter: "login[password]"
+            logout:
+                path: security_logout
+                target: categorie-list
+            entry_point: form_login
+        
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -24,6 +38,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/categorie/list, roles: IS_AUTHENTICATED }
 
 when@test:
     security:
