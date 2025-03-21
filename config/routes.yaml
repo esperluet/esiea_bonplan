@@ -3,3 +3,13 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+apis:
+    resource:
+        path: ../src/Api/
+        namespace: App\Api
+    prefix: /api
+    type: attribute
+
+api_login_check:
+    path: /api/login

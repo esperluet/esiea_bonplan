@@ -28,6 +28,10 @@ class Commentaire
     #[ORM\JoinColumn(nullable: false)]
     private ?BonPlan $bonPlan = null;
 
+    public function __construct(){
+        $this->date_creation = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

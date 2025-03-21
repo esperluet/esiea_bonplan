@@ -16,6 +16,17 @@ class CommentaireRepository extends ServiceEntityRepository
         parent::__construct($registry, Commentaire::class);
     }
 
+    public function save(): Commentaire
+    {
+        $em = $this->getEntityManager();
+        $commentaire = new Commentaire();
+        $commentaire->setContenu();
+        $commentaire->getAuteur();
+        $em->persist($commentaire);
+        $em->flush();
+        return $commentaire;
+    }
+
     //    /**
     //     * @return Commentaire[] Returns an array of Commentaire objects
     //     */
