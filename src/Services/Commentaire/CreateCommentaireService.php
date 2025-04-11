@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CreateCommentaireService
 {
-    public function __construct(private EntityManagerInterface $em){
+    public function __construct(private CommentaireRepositoryInterface $repository){
     }
     public function create(CreateCommentaireDTO $data): Commentaire
     {
@@ -23,8 +23,7 @@ class CreateCommentaireService
         $commentaire->setAuteur($data->auteur);
         $commentaire->setBonPlan($data->bonPlan);
 
-        $this->em->persist($commentaire);
-        $this->em->flush();
+        $repository->save($commentaire);
 
         return $commentaire;
     }

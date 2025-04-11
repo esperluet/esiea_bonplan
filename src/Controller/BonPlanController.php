@@ -95,6 +95,7 @@ class BonPlanController extends AbstractController
     public function list(EntityManagerInterface $em)
     {
         $bonPlans = $em->getRepository(BonPlan::class)->findAll();
+        $echo = "Bonjour debug";
         return $this->render(
             'bonplan/list.html.twig',
             [
